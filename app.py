@@ -28,7 +28,7 @@ def main_window():
     window.iconphoto(True, icon)
 
 
-def button_widget(txt: str, my_cmd: str, r: int, c: int) -> None:
+def button_widget(txt: str, my_cmd: str, r=0, c=0) -> None:
 
     def click_me(my_cmd):
         print(f"You Typed: {my_cmd}")
@@ -38,11 +38,11 @@ def button_widget(txt: str, my_cmd: str, r: int, c: int) -> None:
            text=str(txt),
            font=("Ink Free", 20, "bold"),
 
-           bg="yellow",
+           bg="white",
            fg="black",
 
-           padx=20,
-           pady=30,
+           padx=10,
+           pady=10,
 
            command=lambda: click_me(my_cmd),
            # state= ACTIVE, # DISABLED
@@ -50,16 +50,17 @@ def button_widget(txt: str, my_cmd: str, r: int, c: int) -> None:
 
 
 def main():
-    r , c = 0, 0
+    x , r , c = 0, 0, 0
     main_window()
     my_keys = ("√", "x²", "+/-", "C", "1", "2", "3", "+", "4", "5",
                "6", "-", "7", "8", "9", "*", ",", "0", ".", "/", "=")
     my_str = ("sqrt", "pow2", "sign", "clear", "1", "2", "3", "+", "4", "5",
               "6", "-", "7", "8", "9", "*", ",", "0", ".", "/", "exec")
     for _key in zip(my_keys, my_str):
-        r += 1
-        c = r % 4
-        button_widget(_key, row=r, col=c)
+        c = x % 4
+        r = x // 4
+        x += 1
+        button_widget(str(_key[0]), str(_key[1]), r=r, c=c)
 
     window.mainloop()
 
