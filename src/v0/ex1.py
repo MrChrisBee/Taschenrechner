@@ -3,21 +3,20 @@ from tkinter import ttk
 
 
 class App(tk.Tk):
-    def __init__(self):
+    def __init__(self, _appName, _geometry):
         super().__init__()
-        self.title('Tkinter StringVar')
-        self.geometry("300x80")
-
+        self.title(_appName)
+        self.geometry(_geometry)
         self.name_var = tk.StringVar()
 
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=1)
-        self.columnconfigure(2, weight=1)
 
         self.create_widgets()
 
     def create_widgets(self):
 
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
         padding = {'padx': 5, 'pady': 5}
         # label
         ttk.Label(self, text='Name:').grid(column=0, row=0, **padding)
@@ -40,5 +39,5 @@ class App(tk.Tk):
 
 
 if __name__ == "__main__":
-    app = App()
+    app = App("TestApp", "300x80")
     app.mainloop()

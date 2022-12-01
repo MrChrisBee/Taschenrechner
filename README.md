@@ -1,26 +1,18 @@
 # Taschenrechner
-Simple Calculator Test with Tkinter
-Using tkinter i try to make a calculator with as less typing as good.
-Instead of pack i use grid.
-Defining a Function which creates the Buttons
-I use too Tupels, one with the text and one with the command in it,
-looping over this a call the predefined function and create a butten with every thing i need
+Cant use me now
 
-status jet: not uploaded 
-            one can see the buttons with the text on it 
-            i can press them and got a individual predifined text on the console
-            
-try to implement 
-  
-Main think to do is evaluate (eval()) the String i got from input.
-Calculating 5+7= leads to a string containing 5+7 and the evaluation because = was pressend.
-The order in which calculation takes place should ensure by Python eval() (* / before -+ and so on)
-Worklfow should be type a number, recognizing that it's done when a operation is pressed. If this is = ?
-7+          calcstr = "7+"
-5*          calcstr = calcstr + "5*"
+Train using Tkinter by creating a calculator
+I use grid and try to make use of as much as senseful cool things
 
-3=          calcstr = calcstr + "3" (7+5*3)   
+actual point is an issue with PhotoImage and the Image attribute in tk.Button
+Redesign or reconstruct the add_button so that different actions are taken when the user 
+hits + or 5, use a if construct to make the right things
+care for a history of what's typed and calculated (how to use it)
 
-print(eval("7+5*3")) works as Expected
+What's my strategy to limit the digits, actually its just growing 
+when i put to much values in
 
-This is limited to +-*/=. 
+create tests, this is a good place 
+
+
+
