@@ -8,17 +8,18 @@ class Calculator(tk.Tk):
         super().__init__()
         self.title(title)
         self.value = 0
-        # self.config(background="#0f0")
+        #self.config(background="#0f0")
         # there is a var self.text_var representing the Display Content
         self.display_txt = tk.StringVar()
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)
         self.columnconfigure(3, weight=1)
-        # self.rowconfigure(0, weight=4)
+        self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
         self.rowconfigure(2, weight=1)
         self.rowconfigure(3, weight=1)
+        self.rowconfigure(4, weight=1)
 
         self.create_display()
 
