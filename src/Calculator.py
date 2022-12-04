@@ -66,7 +66,7 @@ class Calculator(tk.Tk):
     def choose_action(self, code):
         if len(code) > 1:
             if code == "clear":
-                self.display_txt.set("")
+                self.display_txt.set("0")
             elif code == "change":
                 self.add_to_display(str(self.display_txt.get()*-1))
             elif code == "sqrt":
@@ -79,7 +79,7 @@ class Calculator(tk.Tk):
 
 def main():
     # build representation of keys with text and code
-    txt: list[str] = ['C', '+-', '√', '¼',
+    txt: list[str] = ['C', '+/-', '√', '1/x',
                       '1', '2', '3', '+',
                       '4', '5', '6', '-',
                       '7', '8', '9', '*',
