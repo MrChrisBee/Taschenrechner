@@ -12,7 +12,7 @@ care for a history of what's typed and calculated (how to use it)
 What's my strategy to limit the digits, actually its just growing 
 when i put to much values in
 
-create tests, this is a good place 
+create tests, this is a good place 4
 
 
 
