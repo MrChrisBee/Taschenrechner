@@ -1,34 +1,40 @@
 import tkinter as tk
 from tkinter import TclError, ttk
 from math import sqrt
+from PIL import ImageTk
 
 
 class Calculator(tk.Tk):
-    def __init__(self, title) -> None:
+    def __init__(self, title: str, text: list, code: list, rows: int, cols: int) -> None:
         # create window instance
         super().__init__()
-        self.resizable(False, False)
-        self.title(title)
-        self.value = 0
-        self.display_digits = 17
-        # there is a var self.text_var representing the Display Content
-        self.content = tk.StringVar()
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=1)
-        self.columnconfigure(2, weight=1)
-        self.columnconfigure(3, weight=1)
-        self.rowconfigure(0, weight=1)
-        self.rowconfigure(1, weight=1)
-        self.rowconfigure(2, weight=1)
-        self.rowconfigure(3, weight=1)
-        self.rowconfigure(4, weight=1)
+        if len(code) != len(text):
+            print(f"Text- and code-list has to be the same size")
+            exit(-1)
+        elif rows * cols != len(text):
+            print(f"Can't create a keybord with \n {len(text)} keys on a {rows}*{cols} grid.")
+            exit(-1)
+        else:
+            self.resizable(False, False)
+            self.title(title)
+            self.value = 0
+            self.display_digits = 18
+            self.content = tk.StringVar()
 
-        self.create_display()
+            for r in range(rows):
+                self.columnconfigure(r, weight=1)
+            for c in range(cols):
+                self.rowconfigure(c, weight=1)
+            for num, (text, action) in enumerate(zip(text, code)):
+                # print(num, num // rows, num % rows, num // cols, num % cols, "#", text )
+                self.add_button((num // rows) + 1, num % rows, text, action)
+
+            self.create_display()
+            self.add_to_display('0')
 
     def create_display(self):
         # pixel = PhotoImage(width=100, height=15)
         padding = {'padx': 2, 'pady': 10}
-
         tk.Label(self,
                  textvariable=self.content,
                  font=("Ink Free", 12, "bold"),
@@ -48,7 +54,7 @@ class Calculator(tk.Tk):
         txt = self.content.get()
         if txt == '0':
             self.content.set(what)
-        elif len(txt) <= 10:
+        elif len(txt) <= self.display_digits-4:
             # Reduce the Length of the Display to 10 digits max
             self.content.set(self.content.get() + what)
             self.update()
@@ -56,7 +62,6 @@ class Calculator(tk.Tk):
 
     def add_button(self, _row: int, _col: int, _str: str, _code: str):
         # rebuild with FrameLabel or Frame
-
         pixel = tk.PhotoImage("biene.png")
         # photoimage = pixel.subsample(3, 3)
         act_button = tk.Button(self,
@@ -66,6 +71,7 @@ class Calculator(tk.Tk):
                                height=2,
                                compound=tk.LEFT,
                                command=lambda: self.choose_action(_code))
+
         act_button.grid(row=_row, column=_col, sticky=tk.W)
         self.update()
 
@@ -85,6 +91,7 @@ class Calculator(tk.Tk):
                 self.add_to_display(str(self.content.get() * -1))
             elif code == "sqrt":
                 value = sqrt(float(self.content.get()))
+
         else:
             self.add_to_display(code)
 
@@ -105,16 +112,7 @@ def main():
                        '7', '8', '9', 'times',
                        '.', '0', 'calc', 'divide']
 
-    my_calc = Calculator("Calculation?")
-
-    for num, (text, action) in enumerate(zip(txt, code)):
-        # got 16 buttons make 4 each row, num // 4 is the row
-        # num % 4 ist the col, text is label on button
-        # code is what to do, add_button(row, col, str, code)
-        # print(f"Row {(num // 4)+1} Col {num % 4} ")
-        my_calc.add_button((num // 4) + 1, num % 4, text, action)
-
-    my_calc.add_to_display('0')
+    my_calc = Calculator("Calculation?", txt, code, 4, 5)
 
     my_calc.mainloop()
 
