@@ -32,10 +32,3 @@ login_button.grid(column=1, row=3, sticky=tk.E, padx=5, pady=5)
 
 
 root.mainloop()
-
-# for num, (text, action) in enumerate(zip(txt, code)):
-#     # got 16 buttons make 4 each row, num // 4 is the row
-#     # num % 4 ist the col, text is label on button
-#     # code is what to do, add_button(row, col, str, code)
-#     # print(f"Row {(num // 4)+1} Col {num % 4} ")
-#     my_calc.add_button((num // 4) + 1, num % 4, text, action)
