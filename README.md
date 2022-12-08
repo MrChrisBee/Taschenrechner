@@ -15,5 +15,9 @@ Its not nice now, but it gets useable more and more.
 This could not handle (even self created) numbers in scientifically format 
 
 
+This is getting interessting and a little to much timeconsuming, 
+but i think its worth all to learn using GUI.
 
 
+wie gehe ich mit den nachkommastellen um
+Denke über das Konzept der Sicht nach (gefiltert auf zb 3 Nachkommastellen) auf einen tatsächlichen Wert der viel genauer sein kann
