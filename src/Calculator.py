@@ -22,6 +22,7 @@ class Calculator(tk.Tk):
             self.calc_me = ""  # this will be evaluated
             self.display_digits = 18
             self.content = tk.StringVar()
+            self.test_me = tk.StringVar()
 
             for r in range(rows):
                 self.columnconfigure(r, weight=1)
@@ -36,7 +37,7 @@ class Calculator(tk.Tk):
             self.do_bindings()
             self.create_display()
             self.create_2nd_display()
-            self.add_to_display('0')
+            self.set_display('0.0')
 
     def do_bindings(self):
         # Todo bind to the right keys
@@ -46,11 +47,11 @@ class Calculator(tk.Tk):
         self.bind('2', lambda _: self.choose_action("2"))
         self.bind('3', lambda _: self.choose_action("3"))
         self.bind('4', lambda _: self.choose_action("4"))
-        self.bind(5, lambda _: self.choose_action("5"))
-        self.bind(6, lambda _: self.choose_action("6"))
-        self.bind(7, lambda _: self.choose_action("7"))
-        self.bind(8, lambda _: self.choose_action("8"))
-        self.bind(9, lambda _: self.choose_action("9"))
+        self.bind('5', lambda _: self.choose_action("5"))
+        self.bind('6', lambda _: self.choose_action("6"))
+        self.bind('7', lambda _: self.choose_action("7"))
+        self.bind('8', lambda _: self.choose_action("8"))
+        self.bind('9', lambda _: self.choose_action("9"))
 
     def create_display(self):
         # todo picture on button in grid
@@ -75,7 +76,7 @@ class Calculator(tk.Tk):
     def create_2nd_display(self):
         padding = {'padx': 2, 'pady': 10}
         tk.Label(self,
-                 textvariable=self.calc_me,
+                 textvariable=self.test_me,
                  font=("Ink Free", 12, "bold"),
                  # image=pixel,
                  height=1,
@@ -95,7 +96,8 @@ class Calculator(tk.Tk):
         elif len(txt) <= self.display_digits - 4:
             self.content.set(self.content.get() + what)
             self.update()
-        # what to do if the user types more then 10 digits? nothing?
+        # todo what to do if the user types more then 10 digits? nothing?
+        # fix or kill me
 
     def set_display(self, what: str):
         self.content.set(what)
@@ -140,7 +142,10 @@ class Calculator(tk.Tk):
 
         def reciprocal():
             # works on the value on screen
-            self.set_display(str(1 / float(on_screen)))
+            print(on_screen)
+            print(type(on_screen))
+            if float(on_screen) != 0:
+                self.set_display(str(1 / float(on_screen)))
 
         def square_root():
             # works on the value on screen
@@ -183,6 +188,10 @@ class Calculator(tk.Tk):
                         plus()
                     elif code == "minus":
                         minus()
+                    elif code == "times":
+                        times()
+                    elif code == "divide":
+                        divide()
                 elif code == "calc":
                     if is_value:
                         add_value()
