@@ -1,6 +1,7 @@
 Calculator (Taschenrechner)
 
 Build a Calculator using tkinter.
+
 I use geometry manager grid and try to make use of as much 
 as senseful cool things (OOP!)
 Im still learning how a calculator works, try to emulate it as much as i can afford.
